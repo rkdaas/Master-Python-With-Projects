@@ -3,9 +3,9 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "updating packages"
+      - echo "Updating packages"
       - yum update -y
-      - echo "Installing python"
+      - echo "Installing Python"
       - yum install -y python3 python3-pip
       - python3 --version
 
@@ -13,13 +13,11 @@ phases:
     commands:
       - echo "Running python script for verification"
       - python3 Python-app/src/hello.py
+      - echo "Creating deployment zip artifact"
+      - cd Python-app
+      - zip -r ../Python-app.zip appspec.yml scripts src
+      - cd ..
 
 artifacts:
-  base-directory: Python-app
   files:
-    - appspec.yml
-    - scripts/**/*
-    - src/**/*
-  discard-paths: no
-  name: Python-app.zip
-  packaging: zip               
+    - Python-app.zip
