@@ -1,10 +1,21 @@
 #!/bin/bash
+set -e
 
-# Find the latest deployment-archive folder
- DEPLOY_DIR=$(ls -d /opt/codedeploy-agent/deployment-root/*-*-*-*-* 2>/dev/null | head -1)
- cd "$DEPLOY_DIR"
- DEPLOYMENT_ID=$(ls -td d-* 2>/dev/null | head -1)
- cd "$DEPLOYMENT_ID"/deployment-archive/src/
- cp hello.py /tmp/hello.py
- 
+# Pick the instance folder
+INSTANCE_DIR=$(ls -d /opt/codedeploy-agent/deployment-root/*-*-*-*-* 2>/dev/null | head -1)
 
+# Pick the latest deployment
+LATEST_DEPLOY=$(ls -td $INSTANCE_DIR/d-* 2>/dev/null | head -1)
+
+# Full path to src folder
+SRC_DIR="$LATEST_DEPLOY/deployment-archive/src"
+
+# Debug logs (VERY IMPORTANT for future)
+echo "Instance dir: $INSTANCE_DIR"
+echo "Latest deployment: $LATEST_DEPLOY"
+echo "Source dir: $SRC_DIR"
+
+# Copy file
+cp "$SRC_DIR/hello.py" /tmp/hello.py
+
+echo "Copied hello.py to /tmp successfully"
