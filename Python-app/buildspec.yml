@@ -12,12 +12,12 @@ phases:
   build:
     commands:
       - echo "Running python script for verification"
-      - python3 src/hello.py
+      - python3 Python-app/src/hello.py
 
 artifacts:
   files:
-    - appspec.yml
-    - scripts/**/*
-    - scripts/**/*
+    - Python-app/appspec.yml
+    - Python-app/scripts/**/*
+    - Python-app/src/**/*
 
   discard-paths: no
