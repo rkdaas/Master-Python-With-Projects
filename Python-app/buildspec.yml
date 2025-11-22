@@ -21,3 +21,5 @@ artifacts:
     - Python-app/src/**/*
 
   discard-paths: no
+  name: Python-app.zip
+  packaging: zip               
