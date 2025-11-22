@@ -15,11 +15,11 @@ phases:
       - python3 Python-app/src/hello.py
 
 artifacts:
+  base-directory: Python-app
   files:
-    - Python-app/appspec.yml
-    - Python-app/scripts/**/*
-    - Python-app/src/**/*
-
+    - appspec.yml
+    - scripts/**/*
+    - src/**/*
   discard-paths: no
   name: Python-app.zip
   packaging: zip               
